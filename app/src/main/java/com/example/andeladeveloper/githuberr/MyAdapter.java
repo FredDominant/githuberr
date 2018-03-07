@@ -3,11 +3,14 @@ package com.example.andeladeveloper.githuberr;
 import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,36 +30,39 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         this.context = context;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        public ImageView userImage;
-        public TextView userName;
-        public ViewHolder(View itemView) {
-            super(itemView);
-
-            ImageView userImage =  itemView.findViewById(R.id.userImage);
-            TextView usrName = itemView.findViewById(R.id.userName);
-        }
-    }
-
     @NonNull
     @Override
     public MyAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        TextView view = (TextView) LayoutInflater.from(parent.getContext())
+        ConstraintLayout view = (ConstraintLayout) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item, parent, false);
         return new MyAdapter.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, int position) {
-        Users users = usersList.get(position);
-        holder.userImage.setImageURI(Uri.parse("../../res/drawable/avatar.png"));
-        holder.userName.setText(users.getUserName());
+        holder.setValues(this.usersList.get(position));
     }
 
 
     @Override
     public int getItemCount() {
-        return usersList.size();
+        return this.usersList.size();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+        TextView userWork;
+        TextView userName;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            userWork = itemView.findViewById(R.id.userWork);
+            userName = itemView.findViewById(R.id.userName);
+        }
+
+        public void setValues(@NonNull Users user){
+            this.userWork.setText(user.getUserWorkplace());
+            this.userName.setText(user.getUserName());
+        }
     }
 }

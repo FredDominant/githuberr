@@ -1,8 +1,6 @@
 package com.example.andeladeveloper.githuberr;
 
 
-import android.graphics.drawable.Drawable;
-
 /**
  * Created by andeladeveloper on 06/03/2018.
  */
@@ -10,19 +8,18 @@ import android.graphics.drawable.Drawable;
 public class Users {
 
     private String userName;
-    private String userImage;
+    private String workplace;
 
-    public void User () {
-        userName = "GitHub User";
-        userImage = "@drawable/avatar";
-
+    public Users (String userName, String workplace) {
+        this.userName = userName;
+        this.workplace = workplace;
     }
 
     public String getUserName () {
         return userName;
     }
 
-    public String getuserImage () {
-        return userImage;
+    public String getUserWorkplace () {
+        return workplace;
     }
 }
