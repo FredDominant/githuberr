@@ -1,8 +1,10 @@
 package com.example.andeladeveloper.githuberr;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +37,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, int position) {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * Called when a view has been clicked.
+             *
+             * @param v The view that was clicked.
+             */
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), DetailActivity.class);
+                v.getContext().startActivity(intent);
+            }
+        });
         holder.setValues(this.usersList.get(position));
     }
 
@@ -53,8 +68,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             super(itemView);
             userWork = itemView.findViewById(R.id.userWork);
             userName = itemView.findViewById(R.id.userName);
-        }
 
+        }
         public void setValues(@NonNull Users user){
             this.userWork.setText(user.getUserWorkplace());
             this.userName.setText(user.getUserName());
