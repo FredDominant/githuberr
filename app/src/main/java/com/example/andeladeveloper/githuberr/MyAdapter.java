@@ -4,9 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +46,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
              */
             @Override
             public void onClick(View v) {
-//                Log.v("DETAIL", usersList.get(position).getUserName());
                 Intent intent = new Intent(v.getContext(), DetailActivity.class);
                 intent.putExtra("USERNAME", usersList.get(position).getUserName());
                 intent.putExtra("ORGANISATION", usersList.get(position).getUserWorkplace());
