@@ -1,6 +1,7 @@
 package com.example.andeladeveloper.githuberr;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -34,8 +35,25 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, final int position) {
         holder.setValues(this.usersList.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * Called when a view has been clicked.
+             *
+             * @param v The view that was clicked.
+             */
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), DetailActivity.class);
+                intent.putExtra("USERNAME", usersList.get(position).getUserName());
+                intent.putExtra("ORGANISATION", usersList.get(position).getUserWorkplace());
+                intent.putExtra("REPOS", usersList.get(position).getRepos());
+                v.getContext().startActivity(intent);
+            }
+        });
+
     }
 
 
@@ -53,8 +71,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             super(itemView);
             userWork = itemView.findViewById(R.id.userWork);
             userName = itemView.findViewById(R.id.userName);
-        }
 
+        }
         public void setValues(@NonNull Users user){
             this.userWork.setText(user.getUserWorkplace());
             this.userName.setText(user.getUserName());

@@ -13,13 +13,13 @@ public class MainActivity extends AppCompatActivity {
     private static List<Users> usersList = new ArrayList<>();
 
     static {
-        usersList.add(new Users("Fred Adewole", "Andela"));
-        usersList.add(new Users("Cristiano Ronaldo", "Real Madrid"));
-        usersList.add(new Users("DeMar DeRozan", "Raptors"));
-        usersList.add(new Users("Steph Curry", "Warriors"));
-        usersList.add(new Users("Klay Thomspson", "Warriors"));
-        usersList.add(new Users("Kyle Lowry", "Raptors"));
-        usersList.add(new Users("Russell Westbrook", "Thunders"));
+        usersList.add(new Users("Fred Adewole", "Andela", 60));
+        usersList.add(new Users("Cristiano Ronaldo", "Real Madrid", 12));
+        usersList.add(new Users("DeMar DeRozan", "Raptors", 1));
+        usersList.add(new Users("Steph Curry", "Warriors", 3));
+        usersList.add(new Users("Klay Thomspson", "Warriors", 14));
+        usersList.add(new Users("Kyle Lowry", "Raptors", 30));
+        usersList.add(new Users("Russell Westbrook", "Thunders", 4));
     }
 
     @Override

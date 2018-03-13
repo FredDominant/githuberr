@@ -29,3 +29,10 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:27.1.0'
     implementation 'com.android.support:appcompat-v7:27.1.0'
 }
+
+
+android {
+    lintOptions {
+        abortOnError false
+    }
+}
