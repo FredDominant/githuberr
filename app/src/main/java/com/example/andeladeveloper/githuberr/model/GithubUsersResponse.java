@@ -1,4 +1,4 @@
-package model;
+package com.example.andeladeveloper.githuberr.model;
 
 import com.google.gson.annotations.SerializedName;
 

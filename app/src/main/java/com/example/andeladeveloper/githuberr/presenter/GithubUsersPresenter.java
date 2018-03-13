@@ -1,26 +1,19 @@
-package presenter;
+package com.example.andeladeveloper.githuberr.presenter;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
 
-import com.example.andeladeveloper.githuberr.MainActivity;
 import com.example.andeladeveloper.githuberr.MyAdapter;
-import com.example.andeladeveloper.githuberr.R;
 
-import java.io.InterruptedIOException;
 import java.util.List;
 
-import model.GithubUsers;
-import model.GithubUsersResponse;
+import com.example.andeladeveloper.githuberr.model.GithubUsers;
+import com.example.andeladeveloper.githuberr.model.GithubUsersResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import service.GithubService;
-
-import static android.content.ContentValues.TAG;
+import com.example.andeladeveloper.githuberr.service.GithubService;
 
 /**
  * Created by andeladeveloper on 12/03/2018.
@@ -44,7 +37,7 @@ public class GithubUsersPresenter {
                     @Override
                     public void onResponse(Call<GithubUsersResponse> call, Response<GithubUsersResponse> response) {
                         GithubUsersResponse githubUsersResponse = response.body();
-                        Log.d(TAG, "onResponse: " + githubUsersResponse);
+
                         if (githubUsersResponse != null && githubUsersResponse.getGithubUsers() != null) {
                             List<GithubUsers> users = githubUsersResponse.getGithubUsers();
 

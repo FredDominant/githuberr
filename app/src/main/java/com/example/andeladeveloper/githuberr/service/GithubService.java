@@ -1,4 +1,4 @@
-package service;
+package com.example.andeladeveloper.githuberr.service;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

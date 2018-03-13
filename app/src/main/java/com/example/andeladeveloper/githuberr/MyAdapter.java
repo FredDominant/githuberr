@@ -8,11 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
-import model.GithubUsers;
+import com.example.andeladeveloper.githuberr.model.GithubUsers;
+import com.example.andeladeveloper.githuberr.view.DetailActivity;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by Fred Adewole on 07/03/2018.
@@ -20,7 +23,7 @@ import model.GithubUsers;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
-    private List<GithubUsers> usersList; //list of github users
+    private List<GithubUsers> usersList;
     private Context context;
 
     public MyAdapter(List<GithubUsers> usersList, Context context) {
@@ -42,16 +45,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
 
             /**
-             * Called when a view has been clicked.
+             * Called when a com.example.andeladeveloper.githuberr.view has been clicked.
              *
-             * @param v The view that was clicked.
+             * @param v The com.example.andeladeveloper.githuberr.view that was clicked.
              */
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), DetailActivity.class);
                 intent.putExtra("USERNAME", usersList.get(position).getUsername());
-                intent.putExtra("ORGANISATION", usersList.get(position).getUsername());
-                intent.putExtra("REPOS", usersList.get(position).getUsername());
+                intent.putExtra("IMAGE", usersList.get(position).getAvatar());
+                intent.putExtra("REPOS", usersList.get(position).getRepos());
                 v.getContext().startActivity(intent);
             }
         });
@@ -68,19 +71,23 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         TextView userWork;
         TextView userName;
+        ImageView userImage;
 
         public ViewHolder(View itemView) {
             super(itemView);
             userWork = itemView.findViewById(R.id.userWork);
             userName = itemView.findViewById(R.id.userName);
-            // getAdapterPosition() returns position ;
+            userImage = itemView.findViewById(R.id.userImage);
 
         }
         public void setValues(@NonNull GithubUsers user){
-            //users.getAVatar
             this.userWork.setText(user.getUsername());
-            //users.getUsername()
             this.userName.setText(user.getUsername());
+            Picasso.with(itemView.getContext())
+                    .load(user.getAvatar())
+                    .placeholder(R.drawable.avatar)
+                    .error(R.drawable.avatar)
+                    .into(userImage);
         }
     }
 }
