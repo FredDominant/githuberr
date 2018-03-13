@@ -9,24 +9,12 @@ import java.util.List;
  */
 
 public class GithubUsersResponse {
+
     @SerializedName("items")
     List<GithubUsers> users;
-
-    @SerializedName("total_count")
-    private int count;
-
-    @SerializedName("incomplete_results")
-    private boolean completeResults;
 
     public List<GithubUsers> getGithubUsers () {
         return users;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public boolean getCompleteResults () {
-        return completeResults;
-    }
 }

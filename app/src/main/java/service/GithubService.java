@@ -1,7 +1,5 @@
 package service;
 
-import model.GithubUsers;
-import model.GithubUsersResponse;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

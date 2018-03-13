@@ -14,10 +14,6 @@ public class GithubUsers {
     @SerializedName("avatar_url")
     private String avatar;
 
-    public GithubUsers () {
-
-    }
-
     public String getAvatar() {
         return avatar;
     }
