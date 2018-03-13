@@ -1,9 +1,14 @@
 package presenter;
 
+import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
 import com.example.andeladeveloper.githuberr.MainActivity;
+import com.example.andeladeveloper.githuberr.MyAdapter;
+import com.example.andeladeveloper.githuberr.R;
 
 import java.io.InterruptedIOException;
 import java.util.List;
@@ -23,13 +28,15 @@ import static android.content.ContentValues.TAG;
 
 public class GithubUsersPresenter {
     GithubService githubService;
-    public GithubUsersPresenter (MainActivity view) {
+    Context context;
+    public GithubUsersPresenter (Context context) {
+        this.context = context;
         if (githubService == null) {
-            GithubService githubService = new GithubService();
+            githubService = new GithubService();
         }
     }
 
-    public void getGithubers() {
+    public void getGithubers(final RecyclerView recyclerView) {
         githubService
                 .getApi()
                 .getGithubUsers()
@@ -40,7 +47,12 @@ public class GithubUsersPresenter {
                         Log.d(TAG, "onResponse: " + githubUsersResponse);
                         if (githubUsersResponse != null && githubUsersResponse.getGithubUsers() != null) {
                             List<GithubUsers> users = githubUsersResponse.getGithubUsers();
-                            // adapter should be placed/set here, I think
+
+                            recyclerView.setHasFixedSize(true);
+                            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
+                            recyclerView.setLayoutManager(mLayoutManager);
+                            MyAdapter adapter = new MyAdapter(users, context);
+                            recyclerView.setAdapter(adapter);
                         }
                     }
 

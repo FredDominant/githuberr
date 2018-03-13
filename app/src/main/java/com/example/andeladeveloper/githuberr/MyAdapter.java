@@ -12,16 +12,18 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import model.GithubUsers;
+
 /**
  * Created by Fred Adewole on 07/03/2018.
  */
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
-    private List<Users> usersList;
+    private List<GithubUsers> usersList; //list of github users
     private Context context;
 
-    public MyAdapter(List<Users> usersList, Context context) {
+    public MyAdapter(List<GithubUsers> usersList, Context context) {
         this.usersList = usersList;
         this.context = context;
     }
@@ -47,9 +49,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), DetailActivity.class);
-                intent.putExtra("USERNAME", usersList.get(position).getUserName());
-                intent.putExtra("ORGANISATION", usersList.get(position).getUserWorkplace());
-                intent.putExtra("REPOS", usersList.get(position).getRepos());
+                intent.putExtra("USERNAME", usersList.get(position).getUsername());
+                intent.putExtra("ORGANISATION", usersList.get(position).getUsername());
+                intent.putExtra("REPOS", usersList.get(position).getUsername());
                 v.getContext().startActivity(intent);
             }
         });
@@ -71,11 +73,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             super(itemView);
             userWork = itemView.findViewById(R.id.userWork);
             userName = itemView.findViewById(R.id.userName);
+            // getAdapterPosition() returns position ;
 
         }
-        public void setValues(@NonNull Users user){
-            this.userWork.setText(user.getUserWorkplace());
-            this.userName.setText(user.getUserName());
+        public void setValues(@NonNull GithubUsers user){
+            //users.getAVatar
+            this.userWork.setText(user.getUsername());
+            //users.getUsername()
+            this.userName.setText(user.getUsername());
         }
     }
 }
