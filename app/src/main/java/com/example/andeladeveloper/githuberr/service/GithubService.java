@@ -11,7 +11,7 @@ public class GithubService {
     private Retrofit retrofit = null;
 
     public GithubUsersAPI getApi() {
-        String BASE_URl = "https://api.github.com";
+        String BASE_URl = "https://api.github.com/";
         if (retrofit == null) {
             retrofit = new Retrofit
                     .Builder()

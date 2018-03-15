@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.example.andeladeveloper.githuberr.MyAdapter;
+import com.example.andeladeveloper.githuberr.GithubAdapter;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class GithubUsersPresenter {
     public void getGithubers(final RecyclerView recyclerView) {
         githubService
                 .getApi()
-                .getGithubUsers()
+                .getAllGithubJavaUsers() // to access the Nairobi users api
                 .enqueue(new Callback<GithubUsersResponse>() {
                     @Override
                     public void onResponse(Call<GithubUsersResponse> call, Response<GithubUsersResponse> response) {
@@ -44,7 +44,7 @@ public class GithubUsersPresenter {
                             recyclerView.setHasFixedSize(true);
                             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
                             recyclerView.setLayoutManager(mLayoutManager);
-                            MyAdapter adapter = new MyAdapter(users, context);
+                            GithubAdapter adapter = new GithubAdapter(users, context);
                             recyclerView.setAdapter(adapter);
                         }
                     }

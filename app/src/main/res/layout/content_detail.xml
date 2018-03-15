@@ -9,58 +9,62 @@
     tools:showIn="@layout/activity_detail">
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="392dp"
-        android:layout_height="163dp"
+        android:layout_width="667dp"
+        android:layout_height="77dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="268dp"
+        android:layout_marginTop="236dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.029"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/userName"
             android:layout_width="wrap_content"
-            android:layout_height="31dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
             android:text="@string/username"
             android:textAlignment="textStart"
             android:textAppearance="?android:textAppearanceLarge"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.016"
+            app:layout_constraintHorizontal_bias="0.015"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/reposValue"
             android:layout_width="wrap_content"
-            android:layout_height="54dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="32dp"
             android:autoLink="web"
             android:linksClickable="true"
             android:textAlignment="viewStart"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@color/colorPrimaryDark"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userName" />
+            app:layout_constraintTop_toTopOf="@+id/userName" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="237dp"
+        android:layout_height="221dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:background="#c3c9e1"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.032">
 
         <ImageView
             android:id="@+id/mainUserImage"

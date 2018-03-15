@@ -21,26 +21,26 @@ import com.squareup.picasso.Picasso;
  * Created by Fred Adewole on 07/03/2018.
  */
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.ViewHolder> {
 
     private List<GithubUsers> usersList;
     private Context context;
 
-    public MyAdapter(List<GithubUsers> usersList, Context context) {
+    public GithubAdapter(List<GithubUsers> usersList, Context context) {
         this.usersList = usersList;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public MyAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public GithubAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ConstraintLayout view = (ConstraintLayout) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item, parent, false);
-        return new MyAdapter.ViewHolder(view);
+        return new GithubAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull GithubAdapter.ViewHolder holder, final int position) {
         holder.setValues(this.usersList.get(position));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
 
