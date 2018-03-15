@@ -1,22 +1,32 @@
 package model;
 
+import com.google.gson.annotations.SerializedName;
 
-import android.support.annotation.NonNull;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * Created by Fred Adewole on 12/03/2018.
  */
 
 public class GithubUsersResponse {
+    @SerializedName("items")
     List<GithubUsers> users;
 
-    public GithubUsersResponse () {
-        users = new ArrayList<GithubUsers>();
+    @SerializedName("total_count")
+    private int count;
+
+    @SerializedName("incomplete_results")
+    private boolean completeResults;
+
+    public List<GithubUsers> getGithubUsers () {
+        return users;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public boolean getCompleteResults () {
+        return completeResults;
     }
 }
