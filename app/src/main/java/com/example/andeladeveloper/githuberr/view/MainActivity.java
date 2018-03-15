@@ -1,22 +1,18 @@
 package com.example.andeladeveloper.githuberr.view;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-
 import com.example.andeladeveloper.githuberr.GithubAdapter;
 import com.example.andeladeveloper.githuberr.R;
 import com.example.andeladeveloper.githuberr.model.GithubUsers;
 import com.example.andeladeveloper.githuberr.model.GithubUsersResponse;
-import com.example.andeladeveloper.githuberr.presenter.GithubUsersPresenter;
 import com.example.andeladeveloper.githuberr.service.GithubService;
 import com.example.andeladeveloper.githuberr.service.GithubUsersAPI;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,17 +21,18 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity implements GithubUsersAPI {
 
     private GithubService githubService = new GithubService();
-//    private GithubUsersPresenter presenter = new GithubUsersPresenter(MainActivity.this);
-    private List<GithubUsers> users;
+    private ArrayList<GithubUsers> users;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
-            if (savedInstanceState.get("USERS") != null) {
-                RecyclerView mRecyclerView = findViewById(R.id.recyclerView);
+        setContentView(R.layout.activity_main);
+        RecyclerView mRecyclerView = findViewById(R.id.recyclerView);
+
+        if (savedInstanceState != null) {
                 mRecyclerView.setHasFixedSize(true);
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(MainActivity.this);
                 mRecyclerView.setLayoutManager(mLayoutManager);
+                users = savedInstanceState.getParcelableArrayList("USERS");
                 GithubAdapter adapter = new GithubAdapter(users, MainActivity.this);
                 mRecyclerView.setAdapter(adapter);
             } else {
@@ -45,15 +42,13 @@ public class MainActivity extends AppCompatActivity implements GithubUsersAPI {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        Log.i(outState.toString(), "saveInstance was called ");
-        outState.putParcelable("USERS", (Parcelable) users);
+        outState.putParcelableArrayList("USERS", users);
         super.onSaveInstanceState(outState);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        Log.i(savedInstanceState.toString(), "onRestoreInstanceState was called");
-        users = (List) savedInstanceState.get("USERS");
+        users = savedInstanceState.getParcelableArrayList("USERS");
         super.onRestoreInstanceState(savedInstanceState);
     }
 
@@ -82,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements GithubUsersAPI {
                     public void onFailure(Call<GithubUsersResponse> call, Throwable t) {
                         try {
                             throw new InterruptedException("Something went wrong");
+
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }

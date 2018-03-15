@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.example.andeladeveloper.githuberr.GithubAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.andeladeveloper.githuberr.model.GithubUsers;
@@ -23,7 +24,7 @@ import com.example.andeladeveloper.githuberr.service.GithubService;
 public class GithubUsersPresenter {
     GithubService githubService;
     Context context;
-    List<GithubUsers> users;
+    ArrayList<GithubUsers> users;
     public GithubUsersPresenter (Context context) {
         this.context = context;
         if (githubService == null) {
@@ -65,13 +66,4 @@ public class GithubUsersPresenter {
 //                });
 //    }
 
-    public void onConfigChange () {
-        if (users != null) {
-            for (GithubUsers user: users) {
-                System.out.println(user);
-            }
-        } else {
-            System.out.println("Empty users list");
-        }
-    }
 }
