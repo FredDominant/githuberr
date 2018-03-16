@@ -5,10 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+
 import com.example.andeladeveloper.githuberr.GithubAdapter;
 import com.example.andeladeveloper.githuberr.R;
 import com.example.andeladeveloper.githuberr.model.GithubUsers;
 import com.example.andeladeveloper.githuberr.model.GithubUsersResponse;
+import com.example.andeladeveloper.githuberr.presenter.GithubUsersPresenter;
 import com.example.andeladeveloper.githuberr.service.GithubService;
 import com.example.andeladeveloper.githuberr.service.GithubUsersAPI;
 
@@ -19,18 +21,19 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements GithubUsersAPI {
-
     private GithubService githubService = new GithubService();
+    private GithubUsersPresenter githubUsersPresenter =
+            new GithubUsersPresenter(MainActivity.this);
     private ArrayList<GithubUsers> users;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView mRecyclerView = findViewById(R.id.recyclerView);
-
         if (savedInstanceState != null) {
                 mRecyclerView.setHasFixedSize(true);
-                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(MainActivity.this);
+                RecyclerView.LayoutManager mLayoutManager =
+                        new LinearLayoutManager(MainActivity.this);
                 mRecyclerView.setLayoutManager(mLayoutManager);
                 users = savedInstanceState.getParcelableArrayList("USERS");
                 GithubAdapter adapter = new GithubAdapter(users, MainActivity.this);
@@ -66,9 +69,11 @@ public class MainActivity extends AppCompatActivity implements GithubUsersAPI {
                             users = githubUsersResponse.getGithubUsers();
                             RecyclerView mRecyclerView = findViewById(R.id.recyclerView);
                             mRecyclerView.setHasFixedSize(true);
-                            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(MainActivity.this);
+                            RecyclerView.LayoutManager mLayoutManager =
+                                    new LinearLayoutManager(MainActivity.this);
                             mRecyclerView.setLayoutManager(mLayoutManager);
-                            GithubAdapter adapter = new GithubAdapter(users, MainActivity.this);
+                            GithubAdapter adapter =
+                                    new GithubAdapter(users, MainActivity.this);
                             mRecyclerView.setAdapter(adapter);
                         }
                     }

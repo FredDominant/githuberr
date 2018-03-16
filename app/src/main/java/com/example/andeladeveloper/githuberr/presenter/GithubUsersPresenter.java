@@ -8,7 +8,6 @@ import android.util.Log;
 import com.example.andeladeveloper.githuberr.GithubAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.example.andeladeveloper.githuberr.model.GithubUsers;
 import com.example.andeladeveloper.githuberr.model.GithubUsersResponse;
@@ -31,7 +30,7 @@ public class GithubUsersPresenter {
             githubService = new GithubService();
         }
     }
-//
+
 //    public void getGithubers(final RecyclerView recyclerView) {
 //        githubService
 //                .getApi()
@@ -40,7 +39,6 @@ public class GithubUsersPresenter {
 //                    @Override
 //                    public void onResponse(Call<GithubUsersResponse> call, Response<GithubUsersResponse> response) {
 //                        GithubUsersResponse githubUsersResponse = response.body();
-//
 //                        if (githubUsersResponse != null && githubUsersResponse.getGithubUsers() != null) {
 //                            users = githubUsersResponse.getGithubUsers();
 //
@@ -55,6 +53,7 @@ public class GithubUsersPresenter {
 //                    @Override
 //                    public void onFailure(Call<GithubUsersResponse> call, Throwable t) {
 //                        try {
+//                            users = null;
 //                            throw new InterruptedException("Something went wrong");
 //                            // Do other stuff here
 //                        }
