@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.andeladeveloper.githuberr.model.GithubUsers;
@@ -23,10 +24,10 @@ import com.squareup.picasso.Picasso;
 
 public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.ViewHolder> {
 
-    private List<GithubUsers> usersList;
+    private ArrayList<GithubUsers> usersList;
     private Context context;
 
-    public GithubAdapter(List<GithubUsers> usersList, Context context) {
+    public GithubAdapter(ArrayList<GithubUsers> usersList, Context context) {
         this.usersList = usersList;
         this.context = context;
     }

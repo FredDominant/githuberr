@@ -3,10 +3,11 @@ package com.example.andeladeveloper.githuberr.presenter;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.example.andeladeveloper.githuberr.GithubAdapter;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.example.andeladeveloper.githuberr.model.GithubUsers;
 import com.example.andeladeveloper.githuberr.model.GithubUsersResponse;
@@ -22,6 +23,7 @@ import com.example.andeladeveloper.githuberr.service.GithubService;
 public class GithubUsersPresenter {
     GithubService githubService;
     Context context;
+    ArrayList<GithubUsers> users;
     public GithubUsersPresenter (Context context) {
         this.context = context;
         if (githubService == null) {
@@ -29,37 +31,38 @@ public class GithubUsersPresenter {
         }
     }
 
-    public void getGithubers(final RecyclerView recyclerView) {
-        githubService
-                .getApi()
-                .getAllGithubJavaUsers() // to access the Nairobi users api
-                .enqueue(new Callback<GithubUsersResponse>() {
-                    @Override
-                    public void onResponse(Call<GithubUsersResponse> call, Response<GithubUsersResponse> response) {
-                        GithubUsersResponse githubUsersResponse = response.body();
+//    public void getGithubers(final RecyclerView recyclerView) {
+//        githubService
+//                .getApi()
+//                .getAllGithubJavaUsers() // to access the Nairobi users api
+//                .enqueue(new Callback<GithubUsersResponse>() {
+//                    @Override
+//                    public void onResponse(Call<GithubUsersResponse> call, Response<GithubUsersResponse> response) {
+//                        GithubUsersResponse githubUsersResponse = response.body();
+//                        if (githubUsersResponse != null && githubUsersResponse.getGithubUsers() != null) {
+//                            users = githubUsersResponse.getGithubUsers();
+//
+//                            recyclerView.setHasFixedSize(true);
+//                            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
+//                            recyclerView.setLayoutManager(mLayoutManager);
+//                            GithubAdapter adapter = new GithubAdapter(users, context);
+//                            recyclerView.setAdapter(adapter);
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<GithubUsersResponse> call, Throwable t) {
+//                        try {
+//                            users = null;
+//                            throw new InterruptedException("Something went wrong");
+//                            // Do other stuff here
+//                        }
+//                        catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                            // Do other stuff
+//                        }
+//                    }
+//                });
+//    }
 
-                        if (githubUsersResponse != null && githubUsersResponse.getGithubUsers() != null) {
-                            List<GithubUsers> users = githubUsersResponse.getGithubUsers();
-
-                            recyclerView.setHasFixedSize(true);
-                            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
-                            recyclerView.setLayoutManager(mLayoutManager);
-                            GithubAdapter adapter = new GithubAdapter(users, context);
-                            recyclerView.setAdapter(adapter);
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<GithubUsersResponse> call, Throwable t) {
-                        try {
-                            throw new InterruptedException("Something went wrong");
-                            // Do other stuff here
-                        }
-                        catch (InterruptedException e) {
-                            e.printStackTrace();
-                            // Do other stuff
-                        }
-                    }
-                });
-    }
 }

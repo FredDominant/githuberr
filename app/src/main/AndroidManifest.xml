@@ -9,9 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".view.MainActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize">
+            <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,6 +18,7 @@
         </activity>
         <activity
             android:name=".view.DetailActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden"
             android:label="@string/title_activity_detail"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>

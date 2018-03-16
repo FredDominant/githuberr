@@ -2,7 +2,7 @@ package com.example.andeladeveloper.githuberr.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by Fred Adewole on 12/03/2018.
@@ -11,9 +11,9 @@ import java.util.List;
 public class GithubUsersResponse {
 
     @SerializedName("items")
-    List<GithubUsers> users;
+    ArrayList<GithubUsers> users;
 
-    public List<GithubUsers> getGithubUsers () {
+    public ArrayList<GithubUsers> getGithubUsers () {
         return users;
     }
 
