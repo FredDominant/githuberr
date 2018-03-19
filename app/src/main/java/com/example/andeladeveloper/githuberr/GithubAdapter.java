@@ -25,11 +25,11 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.ViewHolder
     /**
      *
      */
-    private ArrayList<GithubUsers> usersList = new ArrayList<>();
+    private final ArrayList<GithubUsers> usersList;
     /**
      *
      */
-    private Context context;
+    private final Context context;
 
     /**
      * Instantiates a new Github adapter.

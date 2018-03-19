@@ -11,7 +11,7 @@ public class GithubService {
     /**
      *
      */
-    final String baseUrl = "https://api.github.com/";
+    static final String baseUrl = "https://api.github.com/";
     /**
      *
      */

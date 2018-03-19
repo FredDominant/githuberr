@@ -11,6 +11,27 @@ import com.google.gson.annotations.SerializedName;
 public class GithubUsers implements Parcelable {
 
     /**
+     *
+     */
+    @SerializedName("login")
+    private final String username;
+    /**
+     *
+     */
+    @SerializedName("avatar_url")
+    private final String avatar;
+    /**
+     *
+     */
+    @SerializedName("organizations_url")
+    private final String organisation;
+    /**
+     *
+     */
+    @SerializedName("repos_url")
+    private final String repos;
+
+    /**
      * Instantiates a new Github users.
      *
      * @param in the in
@@ -23,32 +44,12 @@ public class GithubUsers implements Parcelable {
     }
 
     /**
-     *
-     */
-    @SerializedName("login")
-    private String username;
-    /**
-     *
-     */
-    @SerializedName("avatar_url")
-    private String avatar;
-    /**
-     *
-     */
-    @SerializedName("organizations_url")
-    private String organisation;
-    /**
-     *
-     */
-    @SerializedName("repos_url")
-    private String repos;
-
-    /**
      * Gets avatar.
      *
      * @return the avatar
      */
     public String getAvatar() {
+
         return avatar;
     }
 
@@ -68,6 +69,7 @@ public class GithubUsers implements Parcelable {
      * @return the organisaton
      */
     public String getOrganisaton() {
+
         return organisation;
     }
 
@@ -77,6 +79,7 @@ public class GithubUsers implements Parcelable {
      * @return the repos
      */
     public String getRepos() {
+
         return repos;
     }
 
@@ -109,11 +112,13 @@ public class GithubUsers implements Parcelable {
     public static final Creator<GithubUsers> CREATOR = new Creator<GithubUsers>() {
         @Override
         public GithubUsers createFromParcel(Parcel in) {
+
             return new GithubUsers(in);
         }
 
         @Override
         public GithubUsers[] newArray(int size) {
+
             return new GithubUsers[size];
         }
     };
