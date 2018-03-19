@@ -3,7 +3,6 @@ package com.example.andeladeveloper.githuberr.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -34,7 +33,8 @@ public class DetailActivity extends AppCompatActivity {
         userRepos.setText(repos);
 
         final String userProfileLink = "https://github.com/" + name;
-        final String sharedMessage = "Check out this Awesome Java Developer " + name + ", " + userProfileLink;
+        final String sharedMessage =
+                "Check out this Awesome Java Developer " + name + ", " + userProfileLink;
 
         ImageView userImage = findViewById(R.id.mainUserImage);
         Picasso.with(this)

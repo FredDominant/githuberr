@@ -10,10 +10,17 @@ import java.util.ArrayList;
 
 public class GithubUsersResponse {
 
+    /**
+     *
+     */
     @SerializedName("items")
     ArrayList<GithubUsers> users;
 
-    public ArrayList<GithubUsers> getGithubUsers () {
+    /**
+     * @return users
+     */
+    public ArrayList<GithubUsers> getGithubUsers() {
+
         return users;
     }
 

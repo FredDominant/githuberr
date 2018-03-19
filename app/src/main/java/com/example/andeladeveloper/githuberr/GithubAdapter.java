@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.example.andeladeveloper.githuberr.model.GithubUsers;
 import com.example.andeladeveloper.githuberr.view.DetailActivity;
@@ -21,12 +20,23 @@ import com.squareup.picasso.Picasso;
 /**
  * Created by Fred Adewole on 07/03/2018.
  */
-
 public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.ViewHolder> {
 
-    private ArrayList<GithubUsers> usersList;
+    /**
+     *
+     */
+    private ArrayList<GithubUsers> usersList = new ArrayList<>();
+    /**
+     *
+     */
     private Context context;
 
+    /**
+     * Instantiates a new Github adapter.
+     *
+     * @param usersList the users list
+     * @param context   the context
+     */
     public GithubAdapter(ArrayList<GithubUsers> usersList, Context context) {
         this.usersList = usersList;
         this.context = context;
@@ -68,12 +78,29 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.ViewHolder
         return this.usersList.size();
     }
 
+    /**
+     * The type View holder.
+     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
+        /**
+         * The User work.
+         */
         TextView userWork;
+        /**
+         * The User name.
+         */
         TextView userName;
+        /**
+         * The User image.
+         */
         ImageView userImage;
 
+        /**
+         * Instantiates a new View holder.
+         *
+         * @param itemView the item view
+         */
         public ViewHolder(View itemView) {
             super(itemView);
             userWork = itemView.findViewById(R.id.userWork);
@@ -81,7 +108,13 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.ViewHolder
             userImage = itemView.findViewById(R.id.userImage);
 
         }
-        public void setValues(@NonNull GithubUsers user){
+
+        /**
+         * Set values.
+         *
+         * @param user the user
+         */
+        public void setValues(@NonNull GithubUsers user) {
             this.userWork.setText(user.getUsername());
             this.userName.setText(user.getUsername());
             Picasso.with(itemView.getContext())

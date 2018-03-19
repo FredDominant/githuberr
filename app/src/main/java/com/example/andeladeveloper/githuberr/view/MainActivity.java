@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.example.andeladeveloper.githuberr.GithubAdapter;
 import com.example.andeladeveloper.githuberr.R;
@@ -63,9 +62,9 @@ public class MainActivity extends AppCompatActivity implements GithubUsersAPI {
                 .getAllGithubJavaUsers()
                 .enqueue(new Callback<GithubUsersResponse>() {
                     @Override
-                    public void onResponse(Call<GithubUsersResponse> call, Response<GithubUsersResponse> response) {
+                    public void onResponse(Call<GithubUsersResponse> call,
+                                           Response<GithubUsersResponse> response) {
                         GithubUsersResponse githubUsersResponse = response.body();
-                        if (response != null && githubUsersResponse.getGithubUsers() != null) {
                             users = githubUsersResponse.getGithubUsers();
                             RecyclerView mRecyclerView = findViewById(R.id.recyclerView);
                             mRecyclerView.setHasFixedSize(true);
@@ -75,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements GithubUsersAPI {
                             GithubAdapter adapter =
                                     new GithubAdapter(users, MainActivity.this);
                             mRecyclerView.setAdapter(adapter);
-                        }
                     }
 
                     @Override
