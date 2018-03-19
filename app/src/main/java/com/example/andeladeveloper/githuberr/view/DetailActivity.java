@@ -34,6 +34,7 @@ public class DetailActivity extends AppCompatActivity {
         userRepos.setText(repos);
 
         final String userProfileLink = "https://github.com/" + name;
+        final String sharedMessage = "Check out this Awesome Java Developer " + name + ", " + userProfileLink;
 
         ImageView userImage = findViewById(R.id.mainUserImage);
         Picasso.with(this)
@@ -46,10 +47,8 @@ public class DetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Share " + name + "'s profile", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
                 Intent shareProfileIntent = new Intent(Intent.ACTION_SEND);
-                shareProfileIntent.putExtra(Intent.EXTRA_TEXT, "Check out this awesome developer " + name + " , " + userProfileLink);
+                shareProfileIntent.putExtra(Intent.EXTRA_TEXT, sharedMessage);
                 shareProfileIntent.setType("text/plain");
                 startActivity(shareProfileIntent);
             }

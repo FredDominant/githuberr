@@ -38,5 +38,21 @@ dependencies {
 android {
     lintOptions {
         abortOnError false
+        quiet true
+        htmlReport true
     }
+}
+
+task checkstyle(type: Checkstyle) {
+    description 'Check code standard'
+    group 'verification'
+
+    configFile rootProject.file('config/quality/checkstyle/checkstyle.xml')
+    include '**/*.java'
+    exclude '**/gen/**'
+    classpath = files()
+
+    source 'app/src/main/java'
+    ignoreFailures = false
+
 }
