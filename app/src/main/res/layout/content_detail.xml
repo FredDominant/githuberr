@@ -5,96 +5,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.andeladeveloper.githuberr.DetailActivity"
+    tools:context="com.example.andeladeveloper.githuberr.view.DetailActivity"
     tools:showIn="@layout/activity_detail">
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="667dp"
+        android:layout_height="77dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="196dp"
+        android:layout_marginTop="236dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.029"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/workDetails"
-            android:layout_width="165dp"
-            android:layout_height="35dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/userWork"
-            android:textAppearance="?android:textAppearanceLarge"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.016"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/userName" />
-
-        <TextView
             android:id="@+id/userName"
-            android:layout_width="164dp"
-            android:layout_height="31dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
             android:text="@string/username"
             android:textAlignment="textStart"
             android:textAppearance="?android:textAppearanceLarge"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.016"
+            app:layout_constraintHorizontal_bias="0.015"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/repos"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/repos"
-            android:textAppearance="?android:textAppearanceLarge"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/workDetails"
-            tools:text="Repos:" />
-
-        <TextView
             android:id="@+id/reposValue"
-            android:layout_width="75dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@stri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="32dp"
+            android:autoLink="web"
+            android:linksClickable="true"
             android:textAlignment="viewStart"
-            android:textAppearance="?android:textAppearanceLarge"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/repos"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.028"
-            app:layout_constraintStart_toEndOf="@+id/repos"
-            app:layout_constraintTop_toTopOf="@+id/repos"
-            app:layout_constraintVertical_bias="1.0" />
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/colorPrimaryDark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/userName" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="178dp"
+        android:layout_height="221dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
+        android:background="#c3c9e1"
         android:orientation="horizontal"
-        android:background="#edeaea"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.032">
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/mainUserImage"
             android:layout_width="wrap_content"
-            android:layout_height="159dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -104,7 +79,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/avatar" />
+            app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

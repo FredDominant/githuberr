@@ -1,7 +1,5 @@
-package service;
+package com.example.andeladeveloper.githuberr.service;
 
-import model.GithubUsers;
-import model.GithubUsersResponse;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -10,14 +8,25 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class GithubService {
+
+    /**
+     *
+     */
     private Retrofit retrofit = null;
 
+    /**
+     * @return GithubUsersAPI
+     */
     public GithubUsersAPI getApi() {
-        String BASE_URl = "https://api.github.com";
+        /**
+         *
+         */
+        final String baseUrl = "https://api.github.com/";
+
         if (retrofit == null) {
             retrofit = new Retrofit
                     .Builder()
-                    .baseUrl(BASE_URl)
+                    .baseUrl(baseUrl)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
