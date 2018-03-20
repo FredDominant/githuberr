@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState != null) {
             users = savedInstanceState.getParcelableArrayList("USERS");
-            displayResults(users,this);
+            displayResults(users, this);
             } else {
                 githubUsersPresenter.getGithubers();
             }

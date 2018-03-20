@@ -1,5 +1,7 @@
 package com.example.andeladeveloper.githuberr.presenter;
 
+import android.util.Log;
+
 import com.example.andeladeveloper.githuberr.model.GithubUsers;
 import com.example.andeladeveloper.githuberr.model.GithubUsersResponse;
 import com.example.andeladeveloper.githuberr.service.GithubService;
@@ -43,7 +45,8 @@ public class GithubUsersPresenter {
                 .getAllGithubJavaUsers() // to access the Nairobi users api
                 .enqueue(new Callback<GithubUsersResponse>() {
                     @Override
-                    public void onResponse(Call<GithubUsersResponse> call, Response<GithubUsersResponse> response) {
+                    public void onResponse(Call<GithubUsersResponse> call,
+                                           Response<GithubUsersResponse> response) {
                         GithubUsersResponse githubUsersResponse = response.body();
                         ArrayList<GithubUsers> users = githubUsersResponse.getGithubUsers();
                         activity.getUsersData(users);
@@ -52,6 +55,7 @@ public class GithubUsersPresenter {
 
                     @Override
                     public void onFailure(Call<GithubUsersResponse> call, Throwable t) {
+                        Log.w(t.toString(), "onFailure: ", t);
                     }
                 });
 
