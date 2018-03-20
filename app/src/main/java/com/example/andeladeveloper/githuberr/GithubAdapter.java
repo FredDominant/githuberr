@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -84,10 +85,6 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.ViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         /**
-         * The User work.
-         */
-        TextView userWork;
-        /**
          * The User name.
          */
         TextView userName;
@@ -103,7 +100,6 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.ViewHolder
          */
         public ViewHolder(View itemView) {
             super(itemView);
-            userWork = itemView.findViewById(R.id.userWork);
             userName = itemView.findViewById(R.id.userName);
             userImage = itemView.findViewById(R.id.userImage);
 
@@ -115,7 +111,6 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.ViewHolder
          * @param user the user
          */
         public void setValues(@NonNull GithubUsers user) {
-            this.userWork.setText(user.getUsername());
             this.userName.setText(user.getUsername());
             Picasso.with(itemView.getContext())
                     .load(user.getAvatar())

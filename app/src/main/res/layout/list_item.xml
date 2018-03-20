@@ -2,39 +2,37 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardItem"
-        android:layout_width="match_parent"
-        android:layout_height="114dp"
+        android:layout_width="298dp"
+        android:layout_height="268dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardUseCompatPadding="true"
+        >
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#ffffff">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/userImage"
-                android:layout_width="131dp"
-                android:layout_height="112dp"
-                android:layout_marginBottom="8dp"
+                android:layout_width="229dp"
+                android:layout_height="172dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="28dp"
                 android:layout_weight="1"
                 android:contentDescription="user_avatar"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.038"
+                app:layout_constraintHorizontal_bias="0.509"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,32 +40,17 @@
                 android:id="@+id/userName"
                 android:layout_width="129dp"
                 android:layout_height="33dp"
-                android:layout_marginBottom="64dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/username"
                 android:textAppearance="?android:textAppearanceLarge"
                 android:textColor="#000000"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.376"
-                app:layout_constraintStart_toEndOf="@+id/userImage"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/userWork"
-                android:layout_width="122dp"
-                android:layout_height="29dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/userWork"
-                android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="#000000"
-                app:layout_constraintEnd_toEndOf="@+id/userName"
-                app:layout_constraintStart_toStartOf="@+id/userName"
-                app:layout_constraintTop_toBottomOf="@+id/userName" />
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/userImage"
+                app:layout_constraintHorizontal_bias="0.514"
+                app:layout_constraintStart_toStartOf="@+id/userImage"
+                app:layout_constraintTop_toBottomOf="@+id/userImage" />
 
         </android.support.constraint.ConstraintLayout>
 
