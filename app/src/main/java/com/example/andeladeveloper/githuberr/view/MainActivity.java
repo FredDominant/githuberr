@@ -28,12 +28,7 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (savedInstanceState != null) {
-            users = savedInstanceState.getParcelableArrayList("USERS");
-            displayResults(users, this);
-            } else {
-                githubUsersPresenter.getGithubers();
-            }
+
         swipeRefreshLayout = findViewById(R.id.swiperefresh);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -45,6 +40,14 @@ public class MainActivity extends AppCompatActivity{
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
+
+        if (savedInstanceState != null) {
+            users = savedInstanceState.getParcelableArrayList("USERS");
+            displayResults(users, this);
+            } else {
+                githubUsersPresenter.getGithubers();
+            }
+
     }
 
     @Override
