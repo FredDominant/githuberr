@@ -17,7 +17,7 @@ import com.example.andeladeveloper.githuberr.presenter.GithubUsersPresenter;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
     SwipeRefreshLayout swipeRefreshLayout;
     ProgressBar loader;
     private final GithubUsersPresenter githubUsersPresenter =
@@ -73,12 +73,12 @@ public class MainActivity extends AppCompatActivity{
     }
     public void setLoader() {
         loader = findViewById(R.id.loader);
-        loader.setVisibility(View.VISIBLE );
+        loader.setVisibility(View.VISIBLE);
     }
 
     public void unsetLoader() {
         loader = findViewById(R.id.loader);
-        loader.setVisibility(View.GONE );
+        loader.setVisibility(View.GONE);
     }
 
     public void getUsersData(ArrayList<GithubUser> users) {

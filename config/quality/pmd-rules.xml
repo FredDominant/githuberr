@@ -29,7 +29,9 @@
         <exclude name="SingularField"/>
         <exclude name="AvoidReassigningParameters"/>
     </rule>
-    <rule ref="rulesets/java/typeresolution.xml"/>
+    <rule ref="rulesets/java/typeresolution.xml">
+        <exclude name="LooseCoupling"/>
+    </rule>
     <rule ref="rulesets/java/empty.xml/EmptyCatchBlock">
         <properties>
             <property name="allowCommentedBlocks" value="true"/>
