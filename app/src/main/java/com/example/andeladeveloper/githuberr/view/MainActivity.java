@@ -6,6 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
             users = savedInstanceState.getParcelableArrayList("USERS");
             displayResults(users, this);
             } else {
+                setLoader();
                 githubUsersPresenter.getGithubers();
             }
 
