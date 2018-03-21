@@ -4,71 +4,30 @@
 #       i.e   git commit --no-verify
 #
 ## Run checkstyle to check the code quality.
+./gradlew check --daemon
 
-echo "Running style checks..."
-
-./gradlew app:checkstyle --daemon
-
-#store last check result in a variable
-
+# Store the last exit code in a variable.
 checkResult=$?
 
-#perform style check
+# Perform checks
 if [ $checkResult -ne 0 ]
 then
-    echo "Code violations were found. Fix them to proceed with commit"
+    echo "Code violations were found, fix them to proceed with the commit"
     exit 1
 fi
 
+## Run unit tests with gradle wrapper.
+./gradlew test --daemon
 
-echo "Running Lint checks..."
+# Store the last exit code in a variable.
+testResult=$?
 
-./gradlew app:lint --daemon
-
-#store last check result in a variable
-
-lintResult=$?
-
-#perform lint check
-if [ lintResult -ne 0 ]
+# Perform checks
+if [ $testResult -ne 0 ]
 then
-    echo "Code violations were found. Fix them to proceed with commit"
+    echo "Tests failed to run, fix them to proceed with the commit"
     exit 1
 fi
 
-
-echo "Running PMD checks..."
-
-./gradlew app:pmd --daemon
-
-#store last check result in a variable
-
-pmdResults=$?
-
-#perform pmd check
-if [ pmdResults -ne 0 ]
-then
-    echo "Code violations were found. Fix them to proceed with commit"
-    exit 1
-fi
-
-
-echo "Running FindBugs checks..."
-
-./gradlew app:findbugs --daemon
-
-#store last check result in a variable
-
-findBugsResult=$?
-
-#perform findBug check
-if [ findBugsResult -ne 0 ]
-then
-    echo "Code violations were found. Fix them to proceed with commit"
-    exit 1
-fi
-
-#safe to commit
+# You can commit
 exit 0
-
-
