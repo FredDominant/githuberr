@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import com.example.andeladeveloper.githuberr.model.GithubUsers;
+import com.example.andeladeveloper.githuberr.model.GithubUser;
 import com.example.andeladeveloper.githuberr.view.DetailActivity;
 import com.squareup.picasso.Picasso;
 
@@ -25,7 +25,7 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.ViewHolder
     /**
      *
      */
-    private final ArrayList<GithubUsers> usersList;
+    private final ArrayList<GithubUser> usersList;
     /**
      *
      */
@@ -37,7 +37,7 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.ViewHolder
      * @param usersList the users list
      * @param context   the context
      */
-    public GithubAdapter(ArrayList<GithubUsers> usersList, Context context) {
+    public GithubAdapter(ArrayList<GithubUser> usersList, Context context) {
         this.usersList = usersList;
         this.context = context;
     }
@@ -109,7 +109,7 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.ViewHolder
          *
          * @param user the user
          */
-        public void setValues(@NonNull GithubUsers user) {
+        public void setValues(@NonNull GithubUser user) {
             this.userName.setText(user.getUsername());
             Picasso.with(itemView.getContext())
                     .load(user.getAvatar())

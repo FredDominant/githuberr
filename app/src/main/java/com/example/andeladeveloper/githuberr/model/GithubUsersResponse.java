@@ -14,12 +14,12 @@ public class GithubUsersResponse {
      *
      */
     @SerializedName("items")
-    ArrayList<GithubUsers> users;
+    ArrayList<GithubUser> users;
 
     /**
      * @return users
      */
-    public ArrayList<GithubUsers> getGithubUsers() {
+    public ArrayList<GithubUser> getGithubUsers() {
 
         return users;
     }
