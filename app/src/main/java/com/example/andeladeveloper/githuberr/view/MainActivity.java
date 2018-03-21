@@ -2,9 +2,12 @@ package com.example.andeladeveloper.githuberr.view;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.andeladeveloper.githuberr.GithubAdapter;
 import com.example.andeladeveloper.githuberr.R;
@@ -14,21 +17,34 @@ import com.example.andeladeveloper.githuberr.presenter.GithubUsersPresenter;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
+    SwipeRefreshLayout swipeRefreshLayout;
+    ProgressBar loader;
     private final GithubUsersPresenter githubUsersPresenter =
             new GithubUsersPresenter(MainActivity.this);
     private ArrayList<GithubUsers> users;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         if (savedInstanceState != null) {
             users = savedInstanceState.getParcelableArrayList("USERS");
             displayResults(users, this);
             } else {
                 githubUsersPresenter.getGithubers();
             }
+        swipeRefreshLayout = findViewById(R.id.swiperefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if (swipeRefreshLayout.isRefreshing()) {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+                githubUsersPresenter.getGithubers();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     @Override
@@ -52,9 +68,17 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(githubAdapter);
 
     }
+    public void setLoader() {
+        loader = findViewById(R.id.loader);
+        loader.setVisibility(View.VISIBLE );
+    }
+
+    public void unsetLoader() {
+        loader = findViewById(R.id.loader);
+        loader.setVisibility(View.GONE );
+    }
 
     public void getUsersData(ArrayList<GithubUsers> users) {
         this.users = users;
     }
-
 }

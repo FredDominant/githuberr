@@ -49,7 +49,9 @@ public class GithubUsersPresenter {
                                            Response<GithubUsersResponse> response) {
                         GithubUsersResponse githubUsersResponse = response.body();
                         ArrayList<GithubUsers> users = githubUsersResponse.getGithubUsers();
+                        activity.setLoader();
                         activity.getUsersData(users);
+                        activity.unsetLoader();
                         activity.displayResults(users, activity);
                     }
 
