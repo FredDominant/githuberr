@@ -24,6 +24,7 @@
     <rule ref="rulesets/java/strings.xml"/>
     <rule ref="rulesets/java/basic.xml"/>
     <rule ref="rulesets/java/design.xml">
+        <exclude name="AccessorMethodGeneration"/>
         <exclude name="ConfusingTernary"/>
         <exclude name="SingularField"/>
         <exclude name="AvoidReassigningParameters"/>

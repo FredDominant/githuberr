@@ -2,7 +2,7 @@ package com.example.andeladeveloper.githuberr.presenter;
 
 import android.util.Log;
 
-import com.example.andeladeveloper.githuberr.model.GithubUsers;
+import com.example.andeladeveloper.githuberr.model.GithubUser;
 import com.example.andeladeveloper.githuberr.model.GithubUsersResponse;
 import com.example.andeladeveloper.githuberr.service.GithubService;
 import com.example.andeladeveloper.githuberr.view.MainActivity;
@@ -48,8 +48,9 @@ public class GithubUsersPresenter {
                     public void onResponse(Call<GithubUsersResponse> call,
                                            Response<GithubUsersResponse> response) {
                         GithubUsersResponse githubUsersResponse = response.body();
-                        ArrayList<GithubUsers> users = githubUsersResponse.getGithubUsers();
+                        ArrayList<GithubUser> users = githubUsersResponse.getGithubUsers();
                         activity.getUsersData(users);
+                        activity.unsetLoader();
                         activity.displayResults(users, activity);
                     }
 

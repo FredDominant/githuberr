@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by Fred Adewole on 12/03/2018.
  */
-public class GithubUsers implements Parcelable {
+public class GithubUser implements Parcelable {
 
     /**
      *
@@ -36,7 +36,7 @@ public class GithubUsers implements Parcelable {
      *
      * @param in the in
      */
-    protected GithubUsers(Parcel in) {
+    protected GithubUser(Parcel in) {
         username = in.readString();
         avatar = in.readString();
         organisation = in.readString();
@@ -109,17 +109,17 @@ public class GithubUsers implements Parcelable {
     /**
      * The constant CREATOR.
      */
-    public static final Creator<GithubUsers> CREATOR = new Creator<GithubUsers>() {
+    public static final Creator<GithubUser> CREATOR = new Creator<GithubUser>() {
         @Override
-        public GithubUsers createFromParcel(Parcel in) {
+        public GithubUser createFromParcel(Parcel in) {
 
-            return new GithubUsers(in);
+            return new GithubUser(in);
         }
 
         @Override
-        public GithubUsers[] newArray(int size) {
+        public GithubUser[] newArray(int size) {
 
-            return new GithubUsers[size];
+            return new GithubUser[size];
         }
     };
 }

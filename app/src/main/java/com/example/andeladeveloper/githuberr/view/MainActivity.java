@@ -2,33 +2,54 @@ package com.example.andeladeveloper.githuberr.view;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.andeladeveloper.githuberr.GithubAdapter;
 import com.example.andeladeveloper.githuberr.R;
-import com.example.andeladeveloper.githuberr.model.GithubUsers;
+import com.example.andeladeveloper.githuberr.model.GithubUser;
 import com.example.andeladeveloper.githuberr.presenter.GithubUsersPresenter;
 
 import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
+    SwipeRefreshLayout swipeRefreshLayout;
+    ProgressBar loader;
     private final GithubUsersPresenter githubUsersPresenter =
             new GithubUsersPresenter(MainActivity.this);
-    private ArrayList<GithubUsers> users;
+    private ArrayList<GithubUser> users;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        swipeRefreshLayout = findViewById(R.id.swiperefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if (swipeRefreshLayout.isRefreshing()) {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+                githubUsersPresenter.getGithubers();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
         if (savedInstanceState != null) {
             users = savedInstanceState.getParcelableArrayList("USERS");
             displayResults(users, this);
             } else {
+                setLoader();
                 githubUsersPresenter.getGithubers();
             }
+
     }
 
     @Override
@@ -43,18 +64,26 @@ public class MainActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
     }
 
-    public void displayResults(ArrayList<GithubUsers> usersList, Context context) {
+    public void displayResults(ArrayList<GithubUser> usersList, Context context) {
         RecyclerView mRecyclerView = findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager mlayoutManager =
-                new LinearLayoutManager(context);
+                new GridLayoutManager(context, 2);
         mRecyclerView.setLayoutManager(mlayoutManager);
         GithubAdapter githubAdapter = new GithubAdapter(usersList, context);
         mRecyclerView.setAdapter(githubAdapter);
 
     }
-
-    public void getUsersData(ArrayList<GithubUsers> users) {
-        this.users = users;
+    public void setLoader() {
+        loader = findViewById(R.id.loader);
+        loader.setVisibility(View.VISIBLE);
     }
 
+    public void unsetLoader() {
+        loader = findViewById(R.id.loader);
+        loader.setVisibility(View.GONE);
+    }
+
+    public void getUsersData(ArrayList<GithubUser> users) {
+        this.users = users;
+    }
 }
