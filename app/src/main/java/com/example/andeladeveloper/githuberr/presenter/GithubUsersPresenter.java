@@ -50,7 +50,7 @@ public class GithubUsersPresenter {
                         GithubUsersResponse githubUsersResponse = response.body();
                         ArrayList<GithubUser> users = githubUsersResponse.getGithubUsers();
                         activity.getUsersData(users);
-                        activity.unsetLoader();
+                        activity.hideLoader();
                         activity.displayResults(users, activity);
                     }
 
@@ -62,3 +62,4 @@ public class GithubUsersPresenter {
 
     }
 }
+
