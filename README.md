@@ -1,4 +1,4 @@
-# Githuberr
+# Githuberr [![CircleCI](https://circleci.com/gh/Noblemajesty/githuberr.svg?style=svg)](https://circleci.com/gh/Noblemajesty/githuberr)
 
 # Project Title
 
