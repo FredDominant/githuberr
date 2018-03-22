@@ -66,12 +66,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayNoNetwork() {
-        Snackbar.make(constraintLayout, "This guy, no network!", Snackbar.LENGTH_LONG)
+        Snackbar.make(constraintLayout, "This guy, no network!", Snackbar.LENGTH_INDEFINITE)
                 .setAction("Retry", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Snackbar.make(constraintLayout, "Retrying...", Snackbar.LENGTH_LONG)
-                                .show();
                         githubUsersPresenter.getGithubers();
                     }
                 })
