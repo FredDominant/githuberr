@@ -2,6 +2,8 @@ package com.example.andeladeveloper.githuberr.view;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,13 +15,16 @@ import com.example.andeladeveloper.githuberr.GithubAdapter;
 import com.example.andeladeveloper.githuberr.R;
 import com.example.andeladeveloper.githuberr.model.GithubUser;
 import com.example.andeladeveloper.githuberr.presenter.GithubUsersPresenter;
+import com.example.andeladeveloper.githuberr.utils.NetworkUtility;
 
 import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
+    private ConstraintLayout constraintLayout;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ProgressBar loader;
+    private NetworkUtility networkUtility;
     private final GithubUsersPresenter githubUsersPresenter =
             new GithubUsersPresenter(MainActivity.this);
     private ArrayList<GithubUser> users;
@@ -28,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        constraintLayout = findViewById(R.id.constraintLayout_main);
+        if (networkUtility == null) {
+            networkUtility = new NetworkUtility(getApplicationContext());
+        }
         loader = findViewById(R.id.loader);
 
         swipeRefreshLayout = findViewById(R.id.swiperefresh);
@@ -46,10 +55,27 @@ public class MainActivity extends AppCompatActivity {
             onRestoreInstanceState(savedInstanceState);
             displayResults(users, this);
             } else {
-                setLoader();
-                githubUsersPresenter.getGithubers();
+                if (networkUtility.isConnected()) {
+                    showLoader();
+                    githubUsersPresenter.getGithubers();
+                } else {
+                    displayNoNetwork();
+                }
             }
 
+    }
+
+    private void displayNoNetwork() {
+        Snackbar.make(constraintLayout, "This guy, no network!", Snackbar.LENGTH_LONG)
+                .setAction("Retry", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Snackbar.make(constraintLayout, "Retrying...", Snackbar.LENGTH_LONG)
+                                .show();
+                        githubUsersPresenter.getGithubers();
+                    }
+                })
+                .show();
     }
 
     @Override
@@ -73,11 +99,11 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(githubAdapter);
 
     }
-    public void setLoader() {
+    public void showLoader() {
         loader.setVisibility(View.VISIBLE);
     }
 
-    public void unsetLoader() {
+    public void hideLoader() {
         loader.setVisibility(View.GONE);
     }
 
