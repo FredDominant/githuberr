@@ -18,8 +18,8 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
-    SwipeRefreshLayout swipeRefreshLayout;
-    ProgressBar loader;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private ProgressBar loader;
     private final GithubUsersPresenter githubUsersPresenter =
             new GithubUsersPresenter(MainActivity.this);
     private ArrayList<GithubUser> users;
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        loader = findViewById(R.id.loader);
 
         swipeRefreshLayout = findViewById(R.id.swiperefresh);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         if (savedInstanceState != null) {
-            users = savedInstanceState.getParcelableArrayList("USERS");
+            onRestoreInstanceState(savedInstanceState);
             displayResults(users, this);
             } else {
                 setLoader();
@@ -73,12 +74,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void setLoader() {
-        loader = findViewById(R.id.loader);
         loader.setVisibility(View.VISIBLE);
     }
 
     public void unsetLoader() {
-        loader = findViewById(R.id.loader);
         loader.setVisibility(View.GONE);
     }
 
