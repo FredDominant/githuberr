@@ -1,45 +1,79 @@
 package com.example.andeladeveloper.githuberr.view;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.andeladeveloper.githuberr.GithubAdapter;
 import com.example.andeladeveloper.githuberr.R;
-import com.example.andeladeveloper.githuberr.model.GithubUsers;
-import com.example.andeladeveloper.githuberr.model.GithubUsersResponse;
+import com.example.andeladeveloper.githuberr.model.GithubUser;
 import com.example.andeladeveloper.githuberr.presenter.GithubUsersPresenter;
-import com.example.andeladeveloper.githuberr.service.GithubService;
-import com.example.andeladeveloper.githuberr.service.GithubUsersAPI;
+import com.example.andeladeveloper.githuberr.utils.NetworkUtility;
 
 import java.util.ArrayList;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements GithubUsersAPI {
-    private GithubService githubService = new GithubService();
-    private GithubUsersPresenter githubUsersPresenter =
+public class MainActivity extends AppCompatActivity {
+    private ConstraintLayout constraintLayout;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private ProgressBar loader;
+    private NetworkUtility networkUtility;
+    private final GithubUsersPresenter githubUsersPresenter =
             new GithubUsersPresenter(MainActivity.this);
-    private ArrayList<GithubUsers> users;
+    private ArrayList<GithubUser> users;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        RecyclerView mRecyclerView = findViewById(R.id.recyclerView);
-        if (savedInstanceState != null) {
-                mRecyclerView.setHasFixedSize(true);
-                RecyclerView.LayoutManager mLayoutManager =
-                        new LinearLayoutManager(MainActivity.this);
-                mRecyclerView.setLayoutManager(mLayoutManager);
-                users = savedInstanceState.getParcelableArrayList("USERS");
-                GithubAdapter adapter = new GithubAdapter(users, MainActivity.this);
-                mRecyclerView.setAdapter(adapter);
-            } else {
-                getAllGithubJavaUsers();
+        constraintLayout = findViewById(R.id.constraintLayout_main);
+        if (networkUtility == null) {
+            networkUtility = new NetworkUtility(getApplicationContext());
+        }
+        loader = findViewById(R.id.loader);
+
+        swipeRefreshLayout = findViewById(R.id.swiperefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if (swipeRefreshLayout.isRefreshing()) {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+                githubUsersPresenter.getGithubers();
+                swipeRefreshLayout.setRefreshing(false);
             }
+        });
+
+        if (savedInstanceState != null) {
+            onRestoreInstanceState(savedInstanceState);
+            displayResults(users, this);
+            } else {
+                if (networkUtility.isConnected()) {
+                    showLoader();
+                    githubUsersPresenter.getGithubers();
+                } else {
+                    displayNoNetwork();
+                }
+            }
+
+    }
+
+    private void displayNoNetwork() {
+        Snackbar.make(constraintLayout, "This guy, no network!", Snackbar.LENGTH_INDEFINITE)
+                .setAction("Retry", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        githubUsersPresenter.getGithubers();
+                    }
+                })
+                .show();
     }
 
     @Override
@@ -54,39 +88,24 @@ public class MainActivity extends AppCompatActivity implements GithubUsersAPI {
         super.onRestoreInstanceState(savedInstanceState);
     }
 
+    public void displayResults(ArrayList<GithubUser> usersList, Context context) {
+        RecyclerView mRecyclerView = findViewById(R.id.recyclerView);
+        RecyclerView.LayoutManager mlayoutManager =
+                new GridLayoutManager(context, 2);
+        mRecyclerView.setLayoutManager(mlayoutManager);
+        GithubAdapter githubAdapter = new GithubAdapter(usersList, context);
+        mRecyclerView.setAdapter(githubAdapter);
 
-    @Override
-    public Call<GithubUsersResponse> getAllGithubJavaUsers() {
-        githubService
-                .getApi()
-                .getAllGithubJavaUsers()
-                .enqueue(new Callback<GithubUsersResponse>() {
-                    @Override
-                    public void onResponse(Call<GithubUsersResponse> call,
-                                           Response<GithubUsersResponse> response) {
-                        GithubUsersResponse githubUsersResponse = response.body();
-                            users = githubUsersResponse.getGithubUsers();
-                            RecyclerView mRecyclerView = findViewById(R.id.recyclerView);
-                            mRecyclerView.setHasFixedSize(true);
-                            RecyclerView.LayoutManager mLayoutManager =
-                                    new LinearLayoutManager(MainActivity.this);
-                            mRecyclerView.setLayoutManager(mLayoutManager);
-                            GithubAdapter adapter =
-                                    new GithubAdapter(users, MainActivity.this);
-                            mRecyclerView.setAdapter(adapter);
-                    }
-
-                    @Override
-                    public void onFailure(Call<GithubUsersResponse> call, Throwable t) {
-                        try {
-                            throw new InterruptedException("Something went wrong");
-
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-        return null;
+    }
+    public void showLoader() {
+        loader.setVisibility(View.VISIBLE);
     }
 
+    public void hideLoader() {
+        loader.setVisibility(View.GONE);
+    }
+
+    public void getUsersData(ArrayList<GithubUser> users) {
+        this.users = users;
+    }
 }

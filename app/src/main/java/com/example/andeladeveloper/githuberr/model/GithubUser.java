@@ -8,14 +8,35 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by Fred Adewole on 12/03/2018.
  */
-public class GithubUsers implements Parcelable {
+public class GithubUser implements Parcelable {
+
+    /**
+     *
+     */
+    @SerializedName("login")
+    private final String username;
+    /**
+     *
+     */
+    @SerializedName("avatar_url")
+    private final String avatar;
+    /**
+     *
+     */
+    @SerializedName("organizations_url")
+    private final String organisation;
+    /**
+     *
+     */
+    @SerializedName("repos_url")
+    private final String repos;
 
     /**
      * Instantiates a new Github users.
      *
      * @param in the in
      */
-    protected GithubUsers(Parcel in) {
+    protected GithubUser(Parcel in) {
         username = in.readString();
         avatar = in.readString();
         organisation = in.readString();
@@ -23,32 +44,12 @@ public class GithubUsers implements Parcelable {
     }
 
     /**
-     *
-     */
-    @SerializedName("login")
-    private String username;
-    /**
-     *
-     */
-    @SerializedName("avatar_url")
-    private String avatar;
-    /**
-     *
-     */
-    @SerializedName("organizations_url")
-    private String organisation;
-    /**
-     *
-     */
-    @SerializedName("repos_url")
-    private String repos;
-
-    /**
      * Gets avatar.
      *
      * @return the avatar
      */
     public String getAvatar() {
+
         return avatar;
     }
 
@@ -68,6 +69,7 @@ public class GithubUsers implements Parcelable {
      * @return the organisaton
      */
     public String getOrganisaton() {
+
         return organisation;
     }
 
@@ -77,6 +79,7 @@ public class GithubUsers implements Parcelable {
      * @return the repos
      */
     public String getRepos() {
+
         return repos;
     }
 
@@ -106,15 +109,17 @@ public class GithubUsers implements Parcelable {
     /**
      * The constant CREATOR.
      */
-    public static final Creator<GithubUsers> CREATOR = new Creator<GithubUsers>() {
+    public static final Creator<GithubUser> CREATOR = new Creator<GithubUser>() {
         @Override
-        public GithubUsers createFromParcel(Parcel in) {
-            return new GithubUsers(in);
+        public GithubUser createFromParcel(Parcel in) {
+
+            return new GithubUser(in);
         }
 
         @Override
-        public GithubUsers[] newArray(int size) {
-            return new GithubUsers[size];
+        public GithubUser[] newArray(int size) {
+
+            return new GithubUser[size];
         }
     };
 }

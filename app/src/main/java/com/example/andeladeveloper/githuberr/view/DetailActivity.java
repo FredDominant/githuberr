@@ -23,7 +23,7 @@ public class DetailActivity extends AppCompatActivity {
 
         Intent intent = this.getIntent();
         final String name = intent.getExtras().getString("USERNAME");
-        final String repos = (intent.getExtras().getString("REPOS"));
+        final String repos = intent.getExtras().getString("REPOS");
         String imageUrl = intent.getExtras().getString("IMAGE");
 
         final TextView username = findViewById(R.id.userName);
