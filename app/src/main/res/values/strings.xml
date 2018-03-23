@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">GitHuberr</string>
     <string name="username">GitHub User</string>
-    <string name="title_activity_detail">User Profile</string>
 </resources>

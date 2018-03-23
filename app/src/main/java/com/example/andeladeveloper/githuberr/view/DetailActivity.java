@@ -2,6 +2,7 @@ package com.example.andeladeveloper.githuberr.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +14,7 @@ import com.example.andeladeveloper.githuberr.R;
 import com.squareup.picasso.Picasso;
 
 public class DetailActivity extends AppCompatActivity {
+    private CollapsingToolbarLayout collapsingToolbarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,7 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = this.getIntent();
         final String name = intent.getExtras().getString("USERNAME");
@@ -42,6 +45,9 @@ public class DetailActivity extends AppCompatActivity {
                 .placeholder(R.drawable.avatar)
                 .error(R.drawable.avatar)
                 .into(userImage);
+
+        collapsingToolbarLayout = findViewById(R.id.collapsingToolbar);
+        collapsingToolbarLayout.setTitle(name);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
