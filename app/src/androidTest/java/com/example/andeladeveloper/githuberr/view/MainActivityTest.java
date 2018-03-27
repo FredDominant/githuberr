@@ -30,6 +30,18 @@ public class MainActivityTest {
         assertNotNull(recyclerView);
     }
 
+    @Test
+    public void constraintLayoutIsDisplayedInMainActivity() {
+        assertNotNull(mainActivity.findViewById(R.id.constraintLayout_main));
+    }
+
+
+    @Test
+    public void lprogressBarIsDisplayedInMainActivity() {
+        assertNotNull(mainActivity.findViewById(R.id.loader));
+
+    }
+
     @After
     public void tearDown() throws Exception {
         mainActivity = null;
