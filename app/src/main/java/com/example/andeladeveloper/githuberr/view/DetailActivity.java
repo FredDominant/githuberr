@@ -29,9 +29,6 @@ public class DetailActivity extends AppCompatActivity {
         final String repos = intent.getExtras().getString("REPOS");
         String imageUrl = intent.getExtras().getString("IMAGE");
 
-        final TextView username = findViewById(R.id.userName);
-        username.setText(name);
-
         TextView userRepos = findViewById(R.id.reposValue);
         userRepos.setText(repos);
 

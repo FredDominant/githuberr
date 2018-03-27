@@ -1,6 +1,7 @@
 package com.example.andeladeveloper.githuberr.view;
 
 import android.content.Context;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
@@ -15,6 +16,7 @@ import com.example.andeladeveloper.githuberr.GithubAdapter;
 import com.example.andeladeveloper.githuberr.R;
 import com.example.andeladeveloper.githuberr.model.GithubUser;
 import com.example.andeladeveloper.githuberr.presenter.GithubUsersPresenter;
+import com.example.andeladeveloper.githuberr.utils.NetworkBroadcast;
 import com.example.andeladeveloper.githuberr.utils.NetworkUtility;
 
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeRefreshLayout;
     private ProgressBar loader;
     private NetworkUtility networkUtility;
+    Bundle savedBundle;
     private final GithubUsersPresenter githubUsersPresenter =
             new GithubUsersPresenter(MainActivity.this);
     private ArrayList<GithubUser> users;
@@ -32,8 +35,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main); //change content with network change
+
         constraintLayout = findViewById(R.id.constraintLayout_main);
+
+        MainActivity.this.registerReceiver(new NetworkBroadcast(), new IntentFilter());
+
         if (networkUtility == null) {
             networkUtility = new NetworkUtility(getApplicationContext());
         }
@@ -77,8 +84,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        if (savedBundle != null) {
+            onRestoreInstanceState(savedBundle);
+        }
+        super.onResume();
+    }
+
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putParcelableArrayList("USERS", users);
+        savedBundle = outState;
         super.onSaveInstanceState(outState);
     }
 
