@@ -24,6 +24,6 @@ public class NetworkJobScheduler extends JobService {
 
     @Override
     public boolean onStopJob(JobParameters params) {
-        return true ;
+        return true;
     }
 }
