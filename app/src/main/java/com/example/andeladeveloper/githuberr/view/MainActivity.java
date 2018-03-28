@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private NetworkUtility networkUtility;
     private final GithubUsersPresenter githubUsersPresenter =
             new GithubUsersPresenter(MainActivity.this);
-    private ArrayList<GithubUser> users;
+    public ArrayList<GithubUser> users;
     private static final int JOB_ID = 101;
     private JobScheduler jobScheduler;
     private JobInfo jobInfo;
