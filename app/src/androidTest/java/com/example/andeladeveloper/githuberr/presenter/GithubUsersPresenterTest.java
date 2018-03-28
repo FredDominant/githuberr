@@ -7,6 +7,9 @@ import com.example.andeladeveloper.githuberr.view.MainActivity;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
+import org.junit.Test;
+
+import static junit.framework.Assert.assertNotNull;
 
 
 /**
@@ -25,12 +28,11 @@ public class GithubUsersPresenterTest {
         githubUsersPresenter = new GithubUsersPresenter(mainActivity);
     }
 
-//    @Test
-//    public void getGithubersShouldWorkCorrectly() {
-//        githubUsersPresenter.getGithubers();
-//        Log.i(mainActivity.users.toString(), "getGithubersShouldWorkCorrectly: ");
-//        assertNotNull(mainActivity.users);
-//    }
+    @Test
+    public void getGithubersShouldWorkCorrectly() { // still failing
+        githubUsersPresenter.getGithubers();
+        assertNotNull(mainActivity.users);
+    }
 
     @After
     public void tearDown() throws Exception {
