@@ -1,8 +1,4 @@
 <resources>
-    <string name="app_name">GitHuberr</string>
+    <string name="app_name">GitHuber</string>
     <string name="username">GitHub User</string>
-    <string name="userWork">Organisation</string>
-    <string name="repos">Repos </string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_detail">User Profile</string>
 </resources>
