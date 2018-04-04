@@ -4,6 +4,7 @@ import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
@@ -11,7 +12,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -46,19 +46,18 @@ public class MainActivity extends AppCompatActivity {
         ComponentName componentName = new ComponentName(this, NetworkJobScheduler.class);
 
         JobInfo.Builder builder = new JobInfo.Builder(JOB_ID, componentName);
-        builder.setPeriodic(5000);
-        builder.setPersisted(true);
-        builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
+        if (Build.VERSION.SDK_INT <= 21) {
+            builder.setPeriodic(5000);
+        } else {
+            builder.setPeriodic(900000);
+        }
+        builder.setRequiresDeviceIdle(false);
 
         jobInfo = builder.build();
         jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
-        int result = jobScheduler.schedule(jobInfo);
-
-        Log.i(Integer.toString(result), "onCreate: Job has been scheduled");
+        jobScheduler.schedule(jobInfo);
 
         constraintLayout = findViewById(R.id.constraintLayout_main);
-
-//        MainActivity.this.registerReceiver(new NetworkBroadcast(), new IntentFilter());
 
         if (networkUtility == null) {
             networkUtility = new NetworkUtility(getApplicationContext());
@@ -91,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             }
     }
 
-    private void displayNoNetwork() {
+    public void displayNoNetwork() {
         Snackbar.make(constraintLayout, "This guy, no network!", Snackbar.LENGTH_INDEFINITE)
                 .setAction("Retry", new View.OnClickListener() {
                     @Override

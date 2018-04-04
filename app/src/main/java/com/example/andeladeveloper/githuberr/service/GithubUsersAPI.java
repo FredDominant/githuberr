@@ -9,7 +9,7 @@ import retrofit2.http.GET;
  */
 
 public interface GithubUsersAPI {
-    String LOCATION = "nairobi";
+    String LOCATION = "lagos";
     String LANGUAGE = "java";
     @GET("search/users?q=location:" + LOCATION + "+language:" + LANGUAGE)
     Call<GithubUsersResponse> getAllGithubJavaUsers();

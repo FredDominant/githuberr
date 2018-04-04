@@ -1,6 +1,5 @@
 package com.example.andeladeveloper.githuberr.presenter;
 
-import android.util.Log;
 
 import com.example.andeladeveloper.githuberr.model.GithubUser;
 import com.example.andeladeveloper.githuberr.model.GithubUsersResponse;
@@ -56,7 +55,9 @@ public class GithubUsersPresenter {
 
                     @Override
                     public void onFailure(Call<GithubUsersResponse> call, Throwable t) {
-                        Log.w(t.toString(), "onFailure: ", t);
+                        activity.displayNoNetwork();
+                        // interface has the method to be called here,
+                        // method should be implemented in the activity
                     }
                 });
 

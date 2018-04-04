@@ -2,6 +2,7 @@ package com.example.andeladeveloper.githuberr.presenter;
 
 import android.support.test.rule.ActivityTestRule;
 
+import com.example.andeladeveloper.githuberr.service.GithubService;
 import com.example.andeladeveloper.githuberr.view.MainActivity;
 
 import org.junit.After;
@@ -10,17 +11,15 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertNotNull;
+import static org.mockito.Mockito.mock;
 
-
-/**
- * Created by andeladeveloper on 28/03/2018.
- */
 public class GithubUsersPresenterTest {
     @Rule
     public ActivityTestRule<MainActivity> activityTestRule =
             new ActivityTestRule<>(MainActivity.class);
     private MainActivity mainActivity = null;
     private GithubUsersPresenter githubUsersPresenter;
+    GithubService githubService = mock(GithubService.class);
 
     @Before
     public void setUp() throws Exception {
@@ -30,6 +29,7 @@ public class GithubUsersPresenterTest {
 
     @Test
     public void getGithubersShouldWorkCorrectly() { // still failing
+//        when(githubService.getApi).thenReturn()
         githubUsersPresenter.getGithubers();
         assertNotNull(mainActivity.users);
     }
