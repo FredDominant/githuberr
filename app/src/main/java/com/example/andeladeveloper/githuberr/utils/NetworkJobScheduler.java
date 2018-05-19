@@ -6,19 +6,17 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class NetworkJobScheduler extends JobService {
-
+    NetworkUtility networkUtility;
     @Override
     public boolean onStartJob(JobParameters params) {
-        Log.i("", "onStartJob in JobService Was called");
-        Toast.makeText(getApplicationContext(), "Job started", Toast.LENGTH_LONG).show();
-
-//        NetworkUtility networkUtility = new NetworkUtility(getApplicationContext());
-//
-//        if (!networkUtility.isConnected()) {
-//            Toast.makeText(getApplicationContext(), "Disconnected Do other stuff here...",
-//              Toast.LENGTH_LONG).show();
-//            jobFinished(params, true);
-//        }
+        networkUtility = new NetworkUtility(getApplicationContext());
+        if (networkUtility.isConnected()) {
+            // do some stuff here
+            Log.i("", "onStartJob: Network dey");
+        } else {
+            Toast.makeText(getApplicationContext(),
+                    "Network disconnected", Toast.LENGTH_LONG).show();
+        }
         return false;
     }
 
