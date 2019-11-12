@@ -9,18 +9,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GithubService {
 
-    /**
-     *
-     */
-    private Retrofit retrofit = null;
+    private Retrofit retrofit;
 
     /**
      * @return GithubUsersAPI
      */
     public GithubUsersAPI getApi() {
-        /**
-         *
-         */
+
         final String baseUrl = "https://api.github.com/";
 
         if (retrofit == null) {

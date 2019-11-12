@@ -25,7 +25,7 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".all_users.MainActivity">
             <!--<intent-filter>-->
                 <!--<action android:name="android.intent.action.MAIN" />-->
 
@@ -34,7 +34,7 @@
         </activity>
         <activity
             android:name=".view.DetailActivity"
-            android:parentActivityName=".view.MainActivity"
+            android:parentActivityName=".all_users.MainActivity"
             android:theme="@style/AppTheme" />
         <activity android:name=".view.WelcomeActivity">
             <intent-filter>

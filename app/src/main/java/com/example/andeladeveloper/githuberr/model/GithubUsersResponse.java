@@ -14,6 +14,7 @@ public class GithubUsersResponse {
      *
      */
     @SerializedName("items")
+    private
     ArrayList<GithubUser> users;
 
     /**

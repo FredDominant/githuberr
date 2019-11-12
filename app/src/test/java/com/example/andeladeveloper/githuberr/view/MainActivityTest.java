@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.example.andeladeveloper.githuberr.R;
+import com.example.andeladeveloper.githuberr.all_users.MainActivity;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

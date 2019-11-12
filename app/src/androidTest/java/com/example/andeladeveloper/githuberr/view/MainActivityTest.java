@@ -1,12 +1,12 @@
 package com.example.andeladeveloper.githuberr.view;
 
-import android.support.test.filters.LargeTest;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 import android.view.View;
 
 import com.example.andeladeveloper.githuberr.R;
-import com.example.andeladeveloper.githuberr.presenter.GithubUsersPresenter;
+import com.example.andeladeveloper.githuberr.all_users.MainActivity;
 
 import org.junit.After;
 import org.junit.Before;
